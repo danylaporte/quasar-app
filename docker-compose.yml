@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  app:
+    build:
+      context: ./docker
+    ports:
+      - 8080:8080
+    volumes:
+      - .:/app
+      - /app/node_modules
+    networks:
+      - app
+    deploy:
+      placement:
+        constraints: [node.role == manager]
+
+networks:
+    app:
